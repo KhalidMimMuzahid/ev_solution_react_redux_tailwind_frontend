@@ -1,13 +1,14 @@
 import { Outlet } from "react-router-dom";
-import Footer from "../../components/footer/Footer";
-import Navbar from "../../components/navbar/Navbar";
+import Sidebar from "../../components/sidebar/Sidebar";
 
 const Main = () => {
   return (
-    <div>
-      <Navbar />
-      <Outlet />
-      <Footer />
+    <div className="h-[100vh] flex">
+      <Sidebar />
+      <div>
+        <Outlet />
+      </div>
+      {/* <Footer /> */}
     </div>
   );
 };
