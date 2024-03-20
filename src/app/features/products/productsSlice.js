@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   value: {
-    myCart: [],
+    myCart: JSON.parse(localStorage.getItem("myCart")) || [],
   },
 };
-
+const saveUpdateCartToLocalStorage = (data) => {
+  localStorage.setItem("myCart", JSON.stringify(data));
+};
 export const productsSlice = createSlice({
   name: "products",
   initialState,
@@ -18,12 +20,14 @@ export const productsSlice = createSlice({
 
       // if the mobile is not already added, then add it to the cart
       !isAlreadyAdded && state.value.myCart.push(action.payload);
+      saveUpdateCartToLocalStorage(state.value.myCart);
     },
     removeProductFromCart: (state, action) => {
       // removing the mobile from cart
       state.value.myCart = state.value.myCart.filter(
         (element) => element.Title !== action.payload.Title
       );
+      saveUpdateCartToLocalStorage(state.value.myCart);
     },
   },
 });
