@@ -6,13 +6,14 @@ const Sidebar = () => {
 
   const keys = Object?.keys(data?.menu);
 
-  // console.log({ keys });
   return (
     <div className="w-[250px] bg-[#ffffff] text-[#000] h-full overflow-auto block">
+      {/* we are looping over the menu and sub menu items  */}
       {keys?.map((key, index) => (
         <SidebarItem
           key={index}
           items={data?.menu[key]}
+          //if this menu has nested submenu; we are passing its name otherwise null
           title={typeof data?.menu[key] == "object" ? key : null}
         />
       ))}

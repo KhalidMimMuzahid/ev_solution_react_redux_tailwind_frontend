@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useDispatch } from "react-redux";
 import {
   addProductToCart,
@@ -5,7 +6,6 @@ import {
 } from "../../../app/features/products/productsSlice";
 import { useMobileIsAddedToCart } from "../../../customHooks/useMobileIsAddedToCart";
 
-/* eslint-disable react/prop-types */
 const EachMobile = ({ mobile }) => {
   const dispatch = useDispatch();
 
@@ -31,9 +31,10 @@ const EachMobile = ({ mobile }) => {
         </div>
 
         {!useMobileIsAddedToCart(mobile?.Title) ? (
+          // if mobile has already added to cart; then ==> Button(add to cart)
           <div
             onClick={() => dispatch(addProductToCart(mobile))}
-            className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+            className="flex cursor-pointer items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -52,9 +53,10 @@ const EachMobile = ({ mobile }) => {
             Add to cart
           </div>
         ) : (
+          // if mobile has not been added to cart; then ==> Button(Remove from cart)
           <div
             onClick={() => dispatch(removeProductFromCart(mobile))}
-            className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+            className="flex cursor-pointer items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

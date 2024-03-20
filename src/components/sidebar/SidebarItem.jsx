@@ -1,67 +1,29 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdPlayArrow } from "react-icons/md";
-import { IoIosHome as Home } from "react-icons/io";
-import { TbCategoryFilled as Category } from "react-icons/tb";
-import { FaSquarePhone as Contact } from "react-icons/fa6";
-import { IoPhonePortrait as Mobile } from "react-icons/io5";
-import { BsFillLaptopFill as Laptop } from "react-icons/bs";
-import { MdProductionQuantityLimits as Accessories } from "react-icons/md";
+import { selectLogo } from "../../utils/selectSideBarLogo";
 const SidebarItem = ({ items, title }) => {
-  const selectLogo = (logoName) => {
-    let component;
-    switch (logoName) {
-      case "Mobile":
-        component = <Mobile />;
-        break;
-      case "Laptop":
-        component = <Laptop />;
-        break;
-      case "home":
-        component = <Home />;
-        break;
-      case "Category":
-        component = <Category />;
-        break;
-      case "contact":
-        component = <Contact />;
-        break;
-      case "Accessories":
-        component = <Accessories />;
-        break;
-      default:
-        component = <span></span>;
-      // code block
-    }
-
-    return component;
-  };
-
   const [open, setOpen] = useState(false);
-  // console.log("items", items);
-  // console.log("title: ", title);
   let keys;
   if (typeof items == "object") {
     keys = Object?.keys(items);
   }
 
+  // if title has a value ==>  its has sub menu properties
   if (title) {
     return (
-      <div className="w-full hover:bg-[#e3c187cc] hover:text-[#000] px-2 py-2">
+      <div className="w-full hover:bg-[#50505035] hover:text-[#000] px-2 py-2">
         <div
           onClick={() => setOpen(!open)}
-          className="flex justify-between items-center px-2"
+          className="flex justify-between items-center px-2 cursor-pointer"
         >
           <span className="flex items-center">
             {selectLogo(title)}
             {title}
           </span>
           <span
-            className={
-              open
-                ? "rotate-90 cursor-pointer transition-all"
-                : " cursor-pointer transition-all"
-            }
+            className={open ? "rotate-90  transition-all" : "  transition-all"}
           >
             <MdPlayArrow />
           </span>
@@ -71,6 +33,7 @@ const SidebarItem = ({ items, title }) => {
             open ? "h-auto overflow-hidden pl-2" : "h-0 overflow-hidden"
           }
         >
+          {/* we are looping over the nested sub menu items calling recursion function*/}
           {keys.map((key, index) => (
             <SidebarItem
               key={index}
@@ -82,15 +45,17 @@ const SidebarItem = ({ items, title }) => {
       </div>
     );
   } else {
+    // if title has no value ==>  it will be just a menu name; it has no any nested submenu
     return (
-      <div className="w-full hover:bg-[#e3c187cc] hover:text-[#000] px-2 py-2">
-        <div className="flex justify-between items-center px-2">
-          <Link to={`/${items}`}>
-            <span className="flex  items-center">
-              {selectLogo(items)} {items}
-            </span>
-          </Link>
-        </div>
+      <div className="w-full hover:bg-[#50505035] hover:text-[#000] px-2 py-2">
+        <Link
+          to={`/${items}`}
+          className="flex justify-between items-center px-2"
+        >
+          <span className="flex  items-center">
+            {selectLogo(items)} {items}
+          </span>
+        </Link>
       </div>
     );
   }

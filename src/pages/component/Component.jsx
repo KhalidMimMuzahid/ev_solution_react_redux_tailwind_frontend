@@ -1,16 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useLoaderData } from "react-router-dom";
+import CircleImage from "./CircleImage";
 
 const Component = () => {
-  const SingleImage = ({ imgSrc, review }) => {
-    return (
-      <>
-        <div className="flex w-full gap-2 items-center ">
-          <img src={imgSrc} alt="brand image" className="w-10 rounded-full" />
-          <span>{review}</span>
-        </div>
-      </>
-    );
-  };
   const componentName = useLoaderData();
 
   return (
@@ -19,31 +11,31 @@ const Component = () => {
         <div className="mx-4 flex flex-wrap">
           <div className="w-full px-4 lg:w-5/12">
             <div className="hero-content">
-              Welcome to our{" "}
-              <h1 className="mb-5 text-4xl font-bold !leading-[1.208]  text-black sm:text-[42px] lg:text-[40px] xl:text-5xl">
+              {/* Welcome to our{" "} */}
+              <h1 className="mb-5 text-5xl font-bold !leading-[1.208]  text-black sm:text-[48px] lg:text-[46px] xl:text-7xl">
                 {componentName}
               </h1>
-              <p className="mb-8 max-w-[480px] text-base text-body-color dark:text-dark-6">
-                We build smarter software solutions to transform the digital
-                world with innovative technology.
+              <p className="mb-4 max-w-[480px] text-base text-body-color dark:text-dark-6">
+                We provide all of digital products and services all over the
+                world.
               </p>
-              <div className="clients pt-16">
+              <div className="clients pt-8">
                 <h6 className="mb-6 flex items-center text-xs font-normal text-body-color dark:text-dark-6">
                   Customer review
                   <span className="ml-3 inline-block h-px w-8 bg-body-color"></span>
                 </h6>
 
                 <div className="flex flex-col gap-3 items-center ">
-                  <SingleImage
-                    imgSrc="https://cdn.tailgrids.com/1.0/assets/images/hero/hero-image-01.png"
+                  <CircleImage
+                    imgSrc="https://i.ibb.co/Fnw0Ckh/fashion-photography.jpg"
                     review="Evs provide best services"
                   />
-                  <SingleImage
-                    imgSrc="https://cdn.tailgrids.com/1.0/assets/images/hero/hero-image-01.png"
+                  <CircleImage
+                    imgSrc="https://i.ibb.co/Fnw0Ckh/fashion-photography.jpg"
                     review="Evs is awesome"
                   />
-                  <SingleImage
-                    imgSrc="https://cdn.tailgrids.com/1.0/assets/images/hero/hero-image-01.png"
+                  <CircleImage
+                    imgSrc="https://i.ibb.co/Fnw0Ckh/fashion-photography.jpg"
                     review="Evs is fantastic"
                   />
                 </div>
@@ -51,7 +43,7 @@ const Component = () => {
             </div>
           </div>
           <div className="hidden px-4 lg:block lg:w-1/12"></div>
-          <div className="w-full px-4 lg:w-6/12">
+          <div className="w-full hidden lg:block px-4 lg:w-6/12">
             <div className="lg:ml-auto lg:text-right">
               <div className="relative z-10 inline-block pt-4 lg:pt-0">
                 <img
